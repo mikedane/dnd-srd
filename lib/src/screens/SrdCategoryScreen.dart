@@ -35,6 +35,13 @@ class _SrdCategoryScreenState extends State<SrdCategoryScreen> {
         children: <Widget>[
           new TextField(
             onChanged: this.onTextFieldChanged, 
+            decoration: new InputDecoration(
+              
+              hintText: "Search " + this.title,
+              prefixIcon: new Icon(Icons.search),
+               contentPadding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0)
+            )
+            
           ),
           new Expanded(
           child: this.textFieldValue.length > 0 ? 

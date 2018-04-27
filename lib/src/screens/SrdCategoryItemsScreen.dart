@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../datastore.dart';
 import './SrdCategoryItemViewScreen.dart';
 import '../components/lists/SrdCategoryItemsList.dart';
-import '../components/lists/SrdCategoryItemsFilterList.dart';
 import '../models/SrdCategory.dart';
 
 class SrdCategoryItemsScreen extends StatefulWidget {
@@ -41,7 +40,6 @@ class _SrdCategoryItemsScreenState extends State<SrdCategoryItemsScreen>{
         ), 
       ), 
       appBar: new AppBar(title: new Text(this.srdCategory.name), actions: <Widget>[new Text('')],),
-    
       body: new Column(
         children: <Widget>[
           new TextField(
@@ -50,7 +48,10 @@ class _SrdCategoryItemsScreenState extends State<SrdCategoryItemsScreen>{
               suffixIcon: new IconButton(
                 icon: new Icon(Icons.filter_list),
                 onPressed: () => this._scaffoldKey.currentState.openEndDrawer(),
-              )
+              ), 
+              hintText: "Search " + this.srdCategory.name,
+              prefixIcon: new Icon(Icons.search),
+               contentPadding: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 15.0)
             )
           ),
           new Expanded(
@@ -71,12 +72,30 @@ class _SrdCategoryItemsScreenState extends State<SrdCategoryItemsScreen>{
 
   Widget getSrdCategoryItemsFilterList( List<SrdCategoryItemFilterField> filterFields){
     return new Column( children: <Widget>[
+      new ButtonBar(
+        children: <Widget>[
+          new FlatButton(
+            child: new Text('Reset All'),
+            textColor: Colors.blue,
+            onPressed: (){
+              for(SrdCategoryItemFilterField filterField in filterFields){
+                for(SrdCategoryItemFilterFieldOption filterFieldOption in filterField.filterFieldOptions){
+                  filterFieldOption.selected = true;
+                }
+              }
+              this.setState((){
+                // this.srdCategory = this.srdCategory;
+              });
+            },
+          ),
+        ], alignment: MainAxisAlignment.center,
+      ),
       new Expanded(child: 
         new ListView.builder(
           itemCount: filterFields.length,
           itemBuilder: (BuildContext context, int index){
             return new ExpansionTile(
-              title: new Text(filterFields[index].field),
+              title: new Text(filterFields[index].field), 
               children: this.getExpansionTileChildren(filterFields[index], index),
             );
           },

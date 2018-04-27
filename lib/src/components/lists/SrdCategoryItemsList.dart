@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../models/SrdCategory.dart';
 import '../list-items/SrdCategoryItemLI.dart';
+import '../../rpg_icons_icons.dart';
 
 class SrdCategoryItemsList extends StatelessWidget {
 
@@ -27,7 +28,7 @@ class SrdCategoryItemsList extends StatelessWidget {
           );
 
           if(!this.shouldDisplayListSeparator(index+1)){
-            columnChildren.add(new Divider(color: Colors.black));
+            columnChildren.add(new Divider(color: Colors.grey));
           }
           return new Column(children: columnChildren);
         }
@@ -69,9 +70,11 @@ class SrdCategoryItemsList extends StatelessWidget {
     new Container(
       height: 35.0,
       color: Colors.grey[300],
+      margin: index > 0 ? EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0) : EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 10.0),
       child:
     new ListTile(
-      title: new Text(separatorString),
+      leading: this.separator == 'category' ? new Icon(RpgIcons.getIconDataByName(srdCategoryItem.categoryId)) : null,
+      title: new Row(children: <Widget>[new Text(separatorString)],),
       dense: true,
       )
     );

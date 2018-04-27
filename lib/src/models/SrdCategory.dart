@@ -6,20 +6,19 @@ class SrdCategory {
 
   String name;
   String id;
-  String icon;
   List<SrdCategoryItem> categoryItems = [];
   List<SrdCategory> subCategories;
   List<SrdCategoryItemFilterField> filterFields;
   
-  SrdCategory(this.name, this.id, this.icon, this.filterFields);
+  SrdCategory(this.name, this.id, this.filterFields);
 
-  SrdCategory.loadData(this.name, this.id, this.icon, this.filterFields){
+  SrdCategory.loadData(this.name, this.id, this.filterFields){
     this._loadSRDCategoryFiles();
   }
-  SrdCategory.withData(this.name, this.id, this.icon, this.categoryItems, this.filterFields){
+  SrdCategory.withData(this.name, this.id, this.categoryItems, this.filterFields){
     this._populateFilterFieldOptions();
   }
-  SrdCategory.withSubCategories(this.name, this.id, this.icon, this.subCategories);
+  SrdCategory.withSubCategories(this.name, this.id, this.subCategories);
 
   void _populateFilterFieldOptions(){
     for(SrdCategoryItemFilterField filterField in this.filterFields){
@@ -138,7 +137,7 @@ class SrdCategory {
     Map<String, int> results = {};
     for(SrdCategoryItem srdCategoryItem in this.categoryItems){
       if(srdCategoryItem.data[filterField.field] != null){
-        for(String option in srdCategoryItem.data[filterField.field].split(filterField.splitString)){
+        for(String option in srdCategoryItem.data[filterField.field].toString().trim().split(filterField.splitString)){
           if(!["", " ", "  "].contains(option)){
             results[option.trim()] = 1;
           }

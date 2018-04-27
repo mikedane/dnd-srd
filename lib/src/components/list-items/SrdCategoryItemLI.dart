@@ -13,11 +13,13 @@ import './MiscItemLI.dart';
 import './WeaponLI.dart';
 
 abstract class SrdCategoryItemLI extends StatelessWidget {
+
   final SrdCategoryItem srdCategoryItem;
 
   SrdCategoryItemLI(this.srdCategoryItem);
 
-    static Widget getListItemForCategory(SrdCategoryItem categoryItem){
+
+  static Widget getListItemForCategory(SrdCategoryItem categoryItem){
     switch(categoryItem.categoryId){
       case 'monsters':
         return new MonsterLI(categoryItem);
