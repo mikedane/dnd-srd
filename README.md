@@ -1,8 +1,5 @@
-# dnd_srd
+# D&D SRD
 
-A new Flutter project.
+A [Flutter](https://flutter.io/) based mobile app which displays information contained in the Dungeons & Dragons Standard Reference Document. 
 
-## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+This app is currently a work in progress and therefore is not yet avaiable on the app store of either iOS or Android. 
